@@ -1,0 +1,125 @@
+.contact-screen {
+    height: 100%;
+}
+
+/* Contact List */
+
+.contact-list {
+    height: 100%;
+    position: relative;
+    background: white;
+    z-index: 0;
+}
+
+.contact-list ::-webkit-scrollbar {
+    transition: all .5s;
+    width: 5px;
+    height: 1px;
+    z-index: 10;
+}
+
+.contact-list ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contact-list ::-webkit-scrollbar-thumb {
+    background: #b3ada7;
+}
+
+.contact-list {
+    height: calc(100% - 68px);
+    box-shadow: inset 0 10px 10px -10px #000000;
+    overflow-x: hidden;
+    padding: 0 16px;
+    margin-bottom: 5px;
+}
+
+.contact {
+    height: 55px;
+    color: #fff;
+    padding: 0 8px;
+    font-size: 24px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    border-top: 1px solid #f2f2f2;
+}
+
+.contact:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.contact div {
+    float: left;
+    transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+}
+
+.contact .avatar {
+    margin: 0 0 0 5px;
+    width: 36px;
+    height: 36px;
+}
+
+.contact .avatar img {
+    border-radius: 50%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: block;
+    width: 100%;
+}
+
+.contact .message-preview {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Contacts */
+
+.contact {
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    z-index: -1;
+}
+
+.contact:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.metadata {
+    display: inline-block;
+    float: right;
+    padding: 0 0 0 7px;
+    position: relative;
+    bottom: -4px;
+}
+
+.time {
+    color: rgba(0, 0, 0, .45);
+    font-size: 11px;
+    display: inline-block;
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+    .contact-list {
+        height: calc(100vh - 55px);
+    }
+}
