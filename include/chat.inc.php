@@ -23,10 +23,10 @@
         </div>
         <div class="conversation">
             <div class="conversation-container">
-                <div class="message draft-message">
-                    You were hugging an old man with a beard screaming "DUMBLEDORE YOU'RE ALIVE!"
+                <div class="message received">
+                    Test message!
                     <span class="metadata">
-                        <span class="time"></span>
+                        <span class="time">7:20</span>
                     </span>
                 </div>
             </div>

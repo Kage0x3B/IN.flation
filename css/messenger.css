@@ -148,7 +148,11 @@ body {
         width: 100%;
     }
 
-    .marvel-device > .screen .chat .contact-screen {
+    .marvel-device > .screen .chat {
+        visibility: visible;
+    }
+
+    .marvel-device > .screen .contact-screen {
         visibility: visible;
     }
 
