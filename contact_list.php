@@ -29,7 +29,6 @@
                             <div class="network">
                                 <i class="zmdi zmdi-network"></i>
                             </div>
-                            <
                             <div class="wifi">
                                 <i class="zmdi zmdi-wifi-alt-2"></i>
                             </div>
@@ -38,8 +37,7 @@
                             </div>
                         </div>
 
-                        <?php //require "include/contact_list.inc.php" ?>
-                        <?php require "include/chat.inc.php" ?>
+                        <?php require "include/contact_list.inc.php" ?>
                     </div>
                 </div>
             </div>

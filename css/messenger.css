@@ -1,174 +1,532 @@
+#chat-screen {
+  height: calc(100% - 68px);
+  /* Conversation */
+  /* Messages */
+  /* Compose */
+}
+
+#chat-screen .conversation {
+  height: calc(100% - 12px);
+  position: relative;
+  background: #8caaea;
+  z-index: 0;
+}
+
+#chat-screen .conversation ::-webkit-scrollbar {
+  transition: all 0.5s;
+  width: 5px;
+  height: 1px;
+  z-index: 10;
+}
+
+#chat-screen .conversation ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-screen .conversation ::-webkit-scrollbar-thumb {
+  background: #b3ada7;
+}
+
+#chat-screen .conversation .conversation-container {
+  height: calc(100% - 68px);
+  box-shadow: inset 0 10px 10px -10px black;
+  overflow-x: hidden;
+  padding: 0 16px;
+  margin-bottom: 5px;
+}
+
+#chat-screen .conversation .conversation-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#chat-screen .message {
+  color: black;
+  clear: both;
+  line-height: 18px;
+  font-size: 15px;
+  padding: 8px;
+  position: relative;
+  margin: 8px 0;
+  max-width: 85%;
+  word-wrap: break-word;
+  z-index: -1;
+}
+
+#chat-screen .message:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+#chat-screen .metadata {
+  display: inline-block;
+  float: right;
+  padding: 0 0 0 7px;
+  position: relative;
+  bottom: -4px;
+}
+
+#chat-screen .metadata .time {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 11px;
+  display: inline-block;
+}
+
+#chat-screen .metadata .tick {
+  display: inline-block;
+  margin-left: 2px;
+  position: relative;
+  top: 4px;
+  height: 16px;
+  width: 16px;
+}
+
+#chat-screen .metadata .tick svg {
+  position: absolute;
+  transition: 0.5s ease-in-out;
+}
+
+#chat-screen .metadata .tick svg:first-child {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: perspective(800px) rotateY(180deg);
+  transform: perspective(800px) rotateY(180deg);
+}
+
+#chat-screen .metadata .tick svg:last-child {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: perspective(800px) rotateY(0deg);
+  transform: perspective(800px) rotateY(0deg);
+}
+
+#chat-screen .metadata .tick-animation svg:first-child {
+  -webkit-transform: perspective(800px) rotateY(0);
+  transform: perspective(800px) rotateY(0);
+}
+
+#chat-screen .metadata .tick-animation svg:last-child {
+  -webkit-transform: perspective(800px) rotateY(-179.9deg);
+  transform: perspective(800px) rotateY(-179.9deg);
+}
+
+#chat-screen .message:first-child {
+  margin: 16px 0 8px;
+}
+
+#chat-screen .message.received {
+  background: #fff;
+  border-radius: 0 5px 5px 5px;
+  float: left;
+}
+
+#chat-screen .message.received .metadata {
+  padding: 0 0 0 16px;
+}
+
+#chat-screen .message.received:after {
+  border-width: 0 10px 10px 0;
+  border-color: transparent #fff transparent transparent;
+  top: 0;
+  left: -10px;
+}
+
+#chat-screen .message.sent {
+  background: #608cea;
+  border-radius: 5px 0 5px 5px;
+  float: right;
+}
+
+#chat-screen .message.sent:after {
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent transparent #608cea;
+  top: 0;
+  right: -10px;
+}
+
+#chat-screen .conversation-compose {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  overflow: hidden;
+  height: 50px;
+  width: 100%;
+  z-index: 2;
+}
+
+#chat-screen .conversation-compose div,
+#chat-screen .conversation-compose input {
+  background: white;
+  height: 100%;
+}
+
+#chat-screen .conversation-compose .input-msg {
+  border: 0;
+  flex: 1 1 auto;
+  font-size: 16px;
+  outline: none;
+  min-width: 50px;
+  margin-left: 8px;
+  padding: 0 8px;
+  border-radius: 5px 0 0 5px;
+}
+
+#chat-screen .conversation-compose .message-box-hook {
+  flex: 0 0 auto;
+  border-radius: 0 0 5px 0;
+  text-align: center;
+  position: relative;
+}
+
+#chat-screen .conversation-compose .message-box-hook:after {
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+  position: absolute;
+  width: 0;
+  height: 0;
+  content: "";
+  top: 0;
+  right: -10px;
+}
+
+#chat-screen .conversation-compose .message-box-hook i {
+  display: block;
+  color: #7d8488;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+#chat-screen .conversation-compose .send {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+#chat-screen .conversation-compose .send .circle {
+  background: #093aa3;
+  border-radius: 50%;
+  color: #fff;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chat-screen .conversation-compose .send .circle i {
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+  #chat-screen {
+    height: calc(100vh - 42px);
+  }
+
+  #chat-screen .conversation-container {
+    height: calc(100vh - 120px);
+  }
+}
+
+#contact-list-screen {
+  height: calc(100% - 25px);
+}
+
+#contact-list-screen .contact-list {
+  box-shadow: inset 0 10px 10px -10px #000000;
+  background: #fff;
+  overflow: auto;
+  height: calc(100% - 55px);
+}
+
+#contact-list-screen .contact-list ::-webkit-scrollbar {
+  transition: all 0.5s;
+  width: 5px;
+  height: 1px;
+  z-index: 10;
+}
+
+#contact-list-screen .contact-list ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#contact-list-screen .contact-list ::-webkit-scrollbar-thumb {
+  background: #e9ebeb;
+}
+
+#contact-list-screen .contact {
+  border-top: 1px solid #f2f2f2;
+  font-size: 15px;
+  padding: 5px 0;
+  width: 100%;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+#contact-list-screen .contact .information {
+  padding-right: 8px;
+  margin-left: 25px;
+}
+
+#contact-list-screen .contact .information::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#contact-list-screen .contact .avatar {
+  float: left;
+  padding: 0 15px 0 13px;
+}
+
+#contact-list-screen .contact .avatar img {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+#contact-list-screen .contact .name {
+  float: left;
+  width: 50%;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 21px;
+  margin-bottom: 3px;
+}
+
+#contact-list-screen .contact .message-preview {
+  float: left;
+  width: calc(100% - (48px + 15px + 13px));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+#contact-list-screen .contact .time {
+  float: right;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+#contact-list-screen .contact:first-child {
+  border-top: 0;
+  padding-top: 6px;
+}
+
+#contact-list-screen .contact:hover {
+  background: #b3ada7;
+  cursor: pointer;
+  border-top: 0;
+  padding-top: 6px;
+}
+
+#contact-list-screen .contact::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media (max-width: 768px) {
+  #contact-list-screen .contact-list {
+    height: calc(100vh - 55px);
+  }
+}
+
 *, *:before, *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 .page {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .marvel-device .screen {
-    text-align: left;
+  text-align: left;
 }
 
 .screen-container {
-    height: 100%;
+  height: 100%;
 }
 
 /* Status Bar */
-
 .status-bar {
-    height: 25px;
-    background: #004e45;
-    color: #fff;
-    font-size: 14px;
-    padding: 0 8px;
+  height: 25px;
+  background: #001238;
+  color: white;
+  font-size: 14px;
+  padding: 0 8px;
 }
 
 .status-bar:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .status-bar div {
-    float: right;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 0 0 8px;
-    font-weight: 600;
+  float: right;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 0 0 8px;
+  font-weight: 600;
 }
 
-
 /* User Bar */
-
 .menu-bar {
-    height: 55px;
-    background: #005e54;
-    color: #fff;
-    padding: 0 8px;
-    font-size: 24px;
-    position: relative;
-    z-index: 1;
+  height: 55px;
+  background: #001f63;
+  color: #fff;
+  padding: 0 8px;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .menu-bar:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .menu-bar div {
-    float: left;
-    transform: translateY(-50%);
-    position: relative;
-    top: 50%;
+  float: left;
+  transform: translateY(-50%);
+  position: relative;
+  top: 50%;
 }
 
 .menu-bar .actions {
-    float: right;
-    margin: 0 0 0 20px;
+  float: right;
+  margin: 0 0 0 20px;
 }
 
 .menu-bar .actions.more {
-    margin: 0 12px 0 32px;
+  margin: 0 12px 0 32px;
 }
 
 .menu-bar .actions.attachment {
-    margin: 0 0 0 30px;
+  margin: 0 0 0 30px;
 }
 
 .menu-bar .actions.attachment i {
-    display: block;
-    transform: rotate(-45deg);
+  display: block;
+  transform: rotate(-45deg);
 }
 
 .menu-bar .avatar {
-    margin: 0 0 0 5px;
-    width: 36px;
-    height: 36px;
+  margin: 0 0 0 5px;
+  width: 36px;
+  height: 36px;
 }
 
 .menu-bar .avatar img {
-    border-radius: 50%;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-    display: block;
-    width: 100%;
+  border-radius: 50%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: block;
+  width: 100%;
 }
 
 .menu-bar .name {
-    font-size: 17px;
-    font-weight: 600;
-    text-overflow: ellipsis;
-    letter-spacing: 0.3px;
-    margin: 0 0 0 8px;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 110px;
+  font-size: 17px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+  margin: 0 0 0 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 110px;
 }
 
 .menu-bar .status {
-    display: block;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
-
 /* Small Screens */
-
 @media (max-width: 768px) {
-    .marvel-device.nexus5 {
-        border-radius: 0;
-        flex: none;
-        padding: 0;
-        max-width: none;
-        overflow: hidden;
-        height: 100%;
-        width: 100%;
-    }
+  .marvel-device.nexus5 {
+    border-radius: 0;
+    flex: none;
+    padding: 0;
+    max-width: none;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
 
-    .marvel-device > .screen .chat {
-        visibility: visible;
-    }
+  .marvel-device > .screen #chat-screen {
+    visibility: visible;
+  }
 
-    .marvel-device > .screen .contact-screen {
-        visibility: visible;
-    }
+  .marvel-device > .screen #contact-list-screen {
+    visibility: visible;
+  }
 
-    .marvel-device {
-        visibility: hidden;
-    }
+  .marvel-device {
+    visibility: hidden;
+  }
 
-    .marvel-device .status-bar {
-        display: none;
-    }
+  .marvel-device .status-bar {
+    display: none;
+  }
 
-    .screen-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+  .screen-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
