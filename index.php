@@ -29,16 +29,15 @@
                             <div class="network">
                                 <i class="zmdi zmdi-network"></i>
                             </div>
-                            <
                             <div class="wifi">
                                 <i class="zmdi zmdi-wifi-alt-2"></i>
                             </div>
-                            <div class="star">
+                            <div class="str">
                                 <i class="zmdi zmdi-star"></i>
                             </div>
                         </div>
 
-                        <?php //require "include/contact_list.inc.php" ?>
+                        <?php require "include/contact_list.inc.php" ?>
                         <?php require "include/chat.inc.php" ?>
                     </div>
                 </div>

@@ -1,6 +1,10 @@
 #chat-screen {
   height: calc(100% - 68px);
 
+  #back-arrow:hover {
+    cursor: pointer;
+  }
+
   /* Conversation */
 
   .conversation {
@@ -10,30 +14,16 @@
     z-index: 0;
   }
 
-  .conversation ::-webkit-scrollbar {
-    transition: all .5s;
-    width: 5px;
-    height: 1px;
-    z-index: 10;
-  }
+  .conversation #conversation-container {
+    @include hide-scrollbar;
 
-  .conversation ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .conversation ::-webkit-scrollbar-thumb {
-    background: #b3ada7;
-  }
-
-  .conversation .conversation-container {
     height: calc(100% - 68px);
     box-shadow: inset 0 10px 10px -10px black;
-    overflow-x: hidden;
     padding: 0 16px;
     margin-bottom: 5px;
   }
 
-  .conversation .conversation-container:after {
+  .conversation #conversation-container:after {
     content: "";
     display: table;
     clear: both;
@@ -68,50 +58,52 @@
     padding: 0 0 0 7px;
     position: relative;
     bottom: -4px;
-  }
 
-  .metadata .time {
-    color: rgba(0, 0, 0, .45);
-    font-size: 11px;
-    display: inline-block;
-  }
+    .time {
+      color: rgba(0, 0, 0, .45);
+      font-size: 11px;
+      display: inline-block;
+    }
 
-  .metadata .tick {
-    display: inline-block;
-    margin-left: 2px;
-    position: relative;
-    top: 4px;
-    height: 16px;
-    width: 16px;
-  }
+    .tick {
+      display: inline-block;
+      margin-left: 2px;
+      position: relative;
+      top: 4px;
+      height: 16px;
+      width: 16px;
 
-  .metadata .tick svg {
-    position: absolute;
-    transition: .5s ease-in-out;
-  }
+      img {
+        position: absolute;
+        transition: .5s ease-in-out;
+      }
 
-  .metadata .tick svg:first-child {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: perspective(800px) rotateY(180deg);
-    transform: perspective(800px) rotateY(180deg);
-  }
+      img:first-child {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: perspective(800px) rotateY(180deg);
+        transform: perspective(800px) rotateY(180deg);
+      }
 
-  .metadata .tick svg:last-child {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: perspective(800px) rotateY(0deg);
-    transform: perspective(800px) rotateY(0deg);
-  }
+      img:last-child {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: perspective(800px) rotateY(0deg);
+        transform: perspective(800px) rotateY(0deg);
+      }
+    }
 
-  .metadata .tick-animation svg:first-child {
-    -webkit-transform: perspective(800px) rotateY(0);
-    transform: perspective(800px) rotateY(0);
-  }
+    .tick-animation {
+      img:first-child {
+        -webkit-transform: perspective(800px) rotateY(0);
+        transform: perspective(800px) rotateY(0);
+      }
 
-  .metadata .tick-animation svg:last-child {
-    -webkit-transform: perspective(800px) rotateY(-179.9deg);
-    transform: perspective(800px) rotateY(-179.9deg);
+      img:last-child {
+        -webkit-transform: perspective(800px) rotateY(-179.9deg);
+        transform: perspective(800px) rotateY(-179.9deg);
+      }
+    }
   }
 
   .message:first-child {
@@ -148,9 +140,58 @@
     right: -10px;
   }
 
+  #message-select {
+    background: transparent;
+    padding: 0;
+    margin-left: 8px;
+    position: absolute;
+    top: calc(100% - 95px);
+    height: 24px;
+
+    button {
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+    }
+
+    .circle {
+      background: $send_button_color;
+      border-radius: 50%;
+      color: #fff;
+      position: relative;
+      width: 24px;
+      height: 24px;
+    }
+
+    .circle i {
+      font-size: 24px;
+    }
+
+    #select-index-dots {
+      background: transparent;
+      display: inline-block;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+
+      margin: 0 3px 3px;
+    }
+
+    .active {
+      background-color: $send_button_color;
+    }
+  }
+
   /* Compose */
 
-  .conversation-compose {
+  .conversation-select {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -158,81 +199,80 @@
     height: 50px;
     width: 100%;
     z-index: 2;
-  }
 
-  .conversation-compose div,
-  .conversation-compose input {
-    background: white;
-    height: 100%;
-  }
+    div, input {
+      background: white;
+      height: 100%;
+    }
 
-  .conversation-compose .input-msg {
-    border: 0;
-    flex: 1 1 auto;
-    font-size: 16px;
-    outline: none;
-    min-width: 50px;
-    margin-left: 8px;
-    padding: 0 8px;
-    border-radius: 5px 0 0 5px;
-  }
+    .input-msg {
+      border: 0;
+      flex: 1 1 auto;
+      font-size: 16px;
+      outline: none;
+      min-width: 50px;
+      margin-left: 8px;
+      padding: 0 8px;
+      border-radius: 5px 0 0 5px;
+    }
 
-  .conversation-compose .message-box-hook {
-    flex: 0 0 auto;
-    border-radius: 0 0 5px 0;
-    text-align: center;
-    position: relative;
-  }
+    .message-box-hook {
+      flex: 0 0 auto;
+      border-radius: 0 0 5px 0;
+      text-align: center;
+      position: relative;
+    }
 
-  .conversation-compose .message-box-hook:after {
-    border-width: 0 0 10px 10px;
-    border-color: transparent transparent transparent #fff;
-    border-style: solid;
-    position: absolute;
-    width: 0;
-    height: 0;
-    content: "";
-    top: 0;
-    right: -10px;
-  }
+    .message-box-hook:after {
+      border-width: 0 0 10px 10px;
+      border-color: transparent transparent transparent #fff;
+      border-style: solid;
+      position: absolute;
+      width: 0;
+      height: 0;
+      content: "";
+      top: 0;
+      right: -10px;
+    }
 
-  .conversation-compose .message-box-hook i {
-    display: block;
-    color: #7d8488;
-    font-size: 24px;
-    transform: translate(-50%, -50%);
-    position: relative;
-    top: 50%;
-    left: 50%;
-  }
+    .message-box-hook i {
+      display: block;
+      color: #7d8488;
+      font-size: 24px;
+      transform: translate(-50%, -50%);
+      position: relative;
+      top: 50%;
+      left: 50%;
+    }
 
-  .conversation-compose .send {
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    flex: 0 0 auto;
-    margin-left: 8px;
-    margin-right: 8px;
-    padding: 0;
-    position: relative;
-    outline: none;
-  }
+    .send {
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      flex: 0 0 auto;
+      margin-left: 8px;
+      margin-right: 8px;
+      padding: 0;
+      position: relative;
+      outline: none;
 
-  .conversation-compose .send .circle {
-    background: $send_button_color;
-    border-radius: 50%;
-    color: #fff;
-    position: relative;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+      .circle {
+        background: $send_button_color;
+        border-radius: 50%;
+        color: #fff;
+        position: relative;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  .conversation-compose .send .circle i {
-    font-size: 24px;
-    margin-left: 5px;
+      .circle i {
+        font-size: 24px;
+        margin-left: 5px;
+      }
+    }
   }
 }
 
@@ -242,7 +282,7 @@
     height: calc(100vh - 42px);
   }
 
-  #chat-screen .conversation-container {
+  #chat-screen #conversation-container {
     height: calc(100vh - 120px);
   }
 }

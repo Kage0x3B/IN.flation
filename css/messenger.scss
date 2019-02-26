@@ -4,8 +4,9 @@ $message_background_color: #608cea;
 $send_button_color: #093aa3;
 $chat_background_color: #8caaea;
 
-@import 'chat';
-@import 'contact_list';
+@import "util";
+@import "chat";
+@import "contact_list";
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -25,6 +26,13 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .page {

@@ -1,50 +1,43 @@
 <div id="chat-screen">
     <div class="menu-bar">
-        <div class="back">
+        <div id="back-arrow" class="back">
             <i class="zmdi zmdi-arrow-left"></i>
         </div>
         <div class="avatar">
-            <img src="https://syscy.de/images/avatar.jpg" alt="Avatar">
+            <img id="contact-avatar" src="" alt="Avatar">
         </div>
         <div class="name">
-            <span>Moritz Hein</span>
+            <span id="contact-name"></span>
             <span class="status">online</span>
         </div>
         <div class="actions more">
             <i class="zmdi zmdi-more-vert"></i>
         </div>
-        <div class="actions attachment">
-            <i class="zmdi zmdi-attachment-alt"></i>
-        </div>
-        <div class="actions">
-            <i class="zmdi zmdi-phone"></i>
-        </div>
     </div>
     <div class="conversation">
-        <div class="conversation-container">
-            <div class="message received">
-                Test message!
-                <span class="metadata">
-                    <span class="time">7:11</span>
-                </span>
+        <div id="conversation-container"></div>
+        <div class="conversation-select">
+            <div id="message-select">
+                <button id="prev-message-choice">
+                    <div class="circle">
+                        <i class="zmdi zmdi-chevron-left"></i>
+                    </div>
+                </button>
+                <div id="select-index-dots">
+                    <!--<span class="dot"></span>
+                    <span class="dot active"></span>-->
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                </div>
+                <button id="next-message-choice">
+                    <div class="circle">
+                        <i class="zmdi zmdi-chevron-right"></i>
+                    </div>
+                </button>
             </div>
-            <div class="message sent">
-                Hallo zurück...
-                <span class="metadata">
-                    <span class="time">7:20</span>
-                </span>
-            </div>
-            <div class="message sent">
-                Das hier braucht noch etwas arbeit..
-                <span class="metadata">
-                    <span class="time">7:34</span>
-                </span>
-            </div>
-        </div>
-        <div class="conversation-compose">
-            <input class="input-msg" name="input" placeholder="Type a message" autocomplete="off" autofocus />
+            <input id="message-text-box" type="text" class="input-msg" placeholder="..." readonly="readonly" />
             <div class="message-box-hook"></div>
-            <button class="send">
+            <button id="send-button" class="send">
                 <div class="circle">
                     <i class="zmdi zmdi-mail-send"></i>
                 </div>

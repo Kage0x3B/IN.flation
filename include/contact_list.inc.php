@@ -7,8 +7,8 @@
             <i class="zmdi zmdi-more-vert"></i>
         </div>
     </div>
-    <div class="contact-list">
-        <div class="contact">
+    <div id="contact-list" class="contact-list">
+        <!--<div class="contact">
             <div class="avatar">
                 <img src="https://syscy.de/images/avatar.jpg" alt="Avatar">
             </div>
@@ -17,6 +17,6 @@
                 <div class="name">Moritz Hein</div>
                 <div class="message-preview">Peter: wowwww omg viele Zeichen Lorem Ipsum uswwwwwwwwwwwwwwwwwwwwwww</div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
