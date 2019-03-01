@@ -1,0 +1,1441 @@
+{
+  "contacts": {
+    "Mario1": {
+      "name": "Mario Draghi",
+      "picture": "Mario.jpg"
+    },
+    "Raphael_Leukel1": {
+      "name": "Raphael Leukel",
+      "picture": "Raphael.jpg"
+    },
+    "Lorenz_Becker_1": {
+      "name": "Lorenz Becker ",
+      "picture": "Lorenz.jpg"
+    },
+    "Aaron_Sigurdson2": {
+      "name": "Aaron Sigurdson",
+      "picture": ""
+    },
+    "Marius_Steinhauer3": {
+      "name": "Marius Steinhauer",
+      "picture": "Marius.jpg"
+    },
+    "Moritz_Hein4": {
+      "name": "Moritz Hein",
+      "picture": "Moritz.jpg"
+    },
+    "Lukas_Schwind_5": {
+      "name": "Lukas Schwind ",
+      "picture": "Lukas.jpg"
+    }
+  },
+  "messages": {
+    "0": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Hallo, Willkommen bei unserer Marktsimulation für Inflation Ich bin Mario, dein Host. Ich werde dich durch die Marktsimulation begleiten, da ich mich als ehemaliger EZB Chef sehr gut mit der Wirtschaft auskenne.\nBitte stimme unserer <a href=\"datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a> zu um das spiel zu starten.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "2"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "2": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich Stimme der Datenschutzerklärung zu.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 3
+          }
+        ]
+      }
+    },
+    "3": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Hallo Mario, lass uns starten",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 4
+          }
+        ]
+      }
+    },
+    "4": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Sehr gut es kann los gehen. Bevor meine Chefs hier das Ruder übernehmen und dich mit einer sehr wichtigen Aufgabe vertaut machen werden, möchte Ich Dir ein paar Hilfreiche Infos geben. Während der Simulation kannst du Dir die passenden Podcasts anhören, die ich hier in unseren Chat senden werde. Probiers gleich mal aus.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 5
+          }
+        ]
+      }
+    },
+    "5": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Ueber_diese_Marktsimulation.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 6
+          }
+        ]
+      }
+    },
+    "6": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "PS: Am Ende von ersten Geschäftsjahr findest du ein Interview mit einem Experten der Finanzwirtschaft zum Thema Inflation. Also bleib dran, um kein Spezialwissen zu verpassen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 7
+          }
+        ]
+      }
+    },
+    "7": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Hast du noch Fragen?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "8"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "8": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Nein!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 103
+          }
+        ]
+      }
+    },
+    "9": {
+      "sender": "Raphael_Leukel1",
+      "chat": "Raphael_Leukel1",
+      "type": "text",
+      "content": "Hallo hier ist Raphael Leukel, EU-Rats Präsident. Wie Du gesehen hast ist der Mario nicht mehr Chef dieser Bank. Frischer Wind muss her. Hast du Interesse an diesem verantwortungsvollen und gut bezahlten Job?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 10
+          }
+        ]
+      }
+    },
+    "10": {
+      "sender": "Raphael_Leukel1",
+      "chat": "Raphael_Leukel1",
+      "type": "audio",
+      "content": "podcasts/Wer_Ezb.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "11"
+            ],
+            "chat": "Raphael_Leukel1"
+          }
+        ]
+      }
+    },
+    "11": {
+      "sender": "PLAYER",
+      "chat": "Raphael_Leukel1",
+      "type": "text",
+      "content": "Ja, ich bin bereit und extrem motiviert für diese neue Aufgabe",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 12
+          }
+        ]
+      }
+    },
+    "12": {
+      "sender": "Raphael_Leukel1",
+      "chat": "Raphael_Leukel1",
+      "type": "text",
+      "content": "Hab, Ichs doch gewusst! Auf dich ist verlass. Jetzt muss ich aber erstmal los. Mario erklärt dir alles weitere.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 13
+          }
+        ]
+      }
+    },
+    "13": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Wie du weisst ist die Aufgabe der EZB die Preisstabilität ind Europa zu gewährleisten. Das bedeute für uns, das es eine Inflationsrate von nahe aber unter 2% geben soll, um eine Deflation zu vermeiden und die Wirtschaft in gesunden maße anzukurbeln. Damit du das besser verstehst erkläre Ich dir jetzt, Inflation und Deflation überhaupt sind.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 14
+          }
+        ]
+      }
+    },
+    "14": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Inflation_Deflation.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "16"
+            ],
+            "chat": "Mario1"
+          },
+          {
+            "actionType": "sendMessage",
+            "messageId": 15
+          }
+        ]
+      }
+    },
+    "15": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "LEERE Nachricht, wird zur Zeit nicht benutzt.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "16"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "16": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Sehr gut, das habe ich schonmal verstanden. Wie geht es weiter?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 17
+          }
+        ]
+      }
+    },
+    "17": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Als Richtwert für deinen Erfolg als EZB Chef siehst du die Werte im Chat mit dem Titel Wirtschaftsdaten. Das wichtigste ist hier für dich die Inflationsrate. Damit du weisst worauf du dich hier einlässt erkläre ich dir jetzt, wie wir diese Berechnen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 18
+          }
+        ]
+      }
+    },
+    "18": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Wie_berechnet_Inflationsrate.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "19"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "19": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Auch das habe ich verstanden. Redest du immer so viel Mario?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 20
+          }
+        ]
+      }
+    },
+    "20": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Puuh.. ja ganz schön viel Wissen auf einmal. EZB Chef ist eben ein harter Job.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 21
+          }
+        ]
+      }
+    },
+    "21": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Über die Wirtschaftsdaten  siehst du nicht nur die Inflationsrate, sondern auch Werte, die dich über die wirtschaftlichen Folgen deiner Entscheidungen informieren. Wie sich Deine Geldpolitischen Entscheidungen auf die Realwirtschaft auswirken erfährst du im nächsten Podcast.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 22
+          }
+        ]
+      }
+    },
+    "22": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Was_passiert_Inflation.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "23"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "23": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Aha, es gibt also Vor und Nachteile.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 24
+          }
+        ]
+      }
+    },
+    "24": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Genau, vollkommen richtig. Es ist alles eine Frage des richtigen Maßes.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 25
+          }
+        ]
+      }
+    },
+    "25": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "So jetzt haben wir die Grundlagen gelegt und du weisst ungefähr, worum du dich in deinem Job kümmern musst. Du bist jetzt einer der wichtigsten Persönlichkeiten Europas.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 26
+          }
+        ]
+      }
+    },
+    "26": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Bisher weisst du zwar, was du tun kannst aber noch nicht, wie du es tun kannst. Nach den nächsten drei Podcasts bist du mit deinem Handwerkszeugvertraut und kannst loslegen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 27
+          }
+        ]
+      }
+    },
+    "27": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Pass jetzt besonders gut auf. Das Schicksal Europas liegt in deinen Händen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "28"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "28": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Meine Lauscher stehen auf Empfang, Mario!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 29
+          }
+        ]
+      }
+    },
+    "29": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Dein erstes Intrument ist der Leitzins. Im Podcast erfährst du alles wichtige. ",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 30
+          }
+        ]
+      }
+    },
+    "30": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Leitzins.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "31"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "31": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Interessant! Was kann ich noch tun?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 33
+          }
+        ]
+      }
+    },
+    "33": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Weiter geht es mit Instrument Nummer 2, der Mindestreserve.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 34
+          }
+        ]
+      }
+    },
+    "34": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Mindestreserve.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "35"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "35": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Sehr gut. Was ist Instrument Nummer 3?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 36
+          }
+        ]
+      }
+    },
+    "36": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Zu guter letzt kannst du auch über die Offenmarktgeschäfte der EZB entscheiden und darüber Einfluss auf die Inflationsrate nehmen. Ich erklär dir, wies funktioniert.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 37
+          }
+        ]
+      }
+    },
+    "37": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Offenmarktgeschaefte.mp3",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 39
+          }
+        ]
+      }
+    },
+    "39": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "So jetzt bist du hoffentlich bereit, um als EZB Chef gutes für Europa zu tun. Bis du bereit?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "40"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "40": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Klar! Lass uns loslegen, Mario!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 41
+          }
+        ]
+      }
+    },
+    "41": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Sehr gut. Dann fangen wir mal an mit deinem 1. Geschäftsjahr.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 42
+          }
+        ]
+      }
+    },
+    "42": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "=== Das Erste Geschäftsjahr === TODO: Besonders kennzeichnen...",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 43
+          }
+        ]
+      }
+    },
+    "43": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Wie möchtest Du Den Leitzins festsetzen?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "44",
+              "45",
+              "46"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "44": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 0,0% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 47
+          }
+        ]
+      }
+    },
+    "45": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 0,5% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 47
+          }
+        ]
+      }
+    },
+    "46": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 1,0% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 47
+          }
+        ]
+      }
+    },
+    "47": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank für deine bedachte Entscheidung.\n=== Und erstmal das spielen der Demo bis hier hin, mache morgen alles fertig. Brauche halt noch die Podcast Dateien, am besten mp3 ===",
+      "events": {
+        "onSend": []
+      }
+    },
+    "48": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Mindestreserve sollen Banken bilden?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "49",
+              " 50",
+              " 51"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "49": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 3% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 52
+          }
+        ]
+      }
+    },
+    "50": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 2% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 52
+          }
+        ]
+      }
+    },
+    "51": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 1% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 52
+          }
+        ]
+      }
+    },
+    "52": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "\nVielen Dank. Kommen wir nun zu den Offenmarktgeschäften.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 53
+          }
+        ]
+      }
+    },
+    "53": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Anleihen möchtest du Kaufen, um den Staat oder das Unternehmen vor der Pleite zu bewahren?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "54",
+              " 55",
+              " 56"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "58": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Staatsanleihen von Griechenland kaufen\nund das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 61
+          }
+        ]
+      }
+    },
+    "59": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Unternehmensanleihen der Deutschen  Bank kaufen, das Unternehmen damit vor der Insolvenz bewahren und viele Arbeitsplätze sichern.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 61
+          }
+        ]
+      }
+    },
+    "60": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Staatsanleihen von Portugal kaufen und das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 61
+          }
+        ]
+      }
+    },
+    "61": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ok, dann lass uns mal schauen, wie sich Europa durch deine Geldmarktpolitik entwickelt hat. Wechsle den Chat und schau Dir Deine Ergebnisse an. ",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 62
+          }
+        ]
+      }
+    },
+    "62": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Du weisst ja, man lernt nie aus. Du aber wirst jetzt von den besten lernen können. Deswegen findest du am Ende dieses Geschäftsjahres ein Interview mit einem Experten der Geldwirtschaft zum Thema Inflation.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "62"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "63": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank für diesen Bonus!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 64
+          }
+        ]
+      }
+    },
+    "64": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich wünsche dir Viel Spaß mit dem Interview mit dem stellvertretenden Vorstandsvorsitzenden der Sparkasse Trier. ",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 65
+          }
+        ]
+      }
+    },
+    "65": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "audio",
+      "content": "podcasts/Experteninterview_Spaeth.mp3",
+      "events": {
+        "onSend": []
+      }
+    },
+    "66": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "=== Das Zweite Geschäftsjahr === TODO: Besonders kennzeichnen...",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "67"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "67": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Wie möchtest Du Den Leitzins festsetzen ?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "69",
+              " 70",
+              " 71 "
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "69": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 0,5% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 72
+          }
+        ]
+      }
+    },
+    "70": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 1,0% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 72
+          }
+        ]
+      }
+    },
+    "71": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 1,5% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 72
+          }
+        ]
+      }
+    },
+    "72": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank für deine bedachte Entscheidung.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 73
+          }
+        ]
+      }
+    },
+    "73": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Mindestreserve sollen Banken bilden?\n",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "74",
+              " 75",
+              " 76"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "74": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 0,5%% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 77
+          }
+        ]
+      }
+    },
+    "75": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestrervesatzes von 2,5% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 77
+          }
+        ]
+      }
+    },
+    "76": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 5,0% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 77
+          }
+        ]
+      }
+    },
+    "77": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank. Kommen wir nun zu den Offenmarktgeschäften.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 78
+          }
+        ]
+      }
+    },
+    "78": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Anleihen möchtest du Kaufen, um den Staat oder das Unternehmen vor der Pleite zu bewahren?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "79",
+              " 80",
+              " 81"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "79": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "\nIch möchte Staatsanleihen von Spanien kaufen und das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 82
+          }
+        ]
+      }
+    },
+    "80": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Unternehmensanleihen von Daimler kaufen, das Unternehmen vor der Insolvenz bewahren und viele Arbeitsplätze sichern",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 82
+          }
+        ]
+      }
+    },
+    "81": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Staatsanleihen von Italien kaufen und das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 82
+          }
+        ]
+      }
+    },
+    "82": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "=== Das Dritte Geschäftsjahr === TODO: Besonders kennzeichnen...",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 83
+          }
+        ]
+      }
+    },
+    "83": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Wie möchtest Du Den Leitzins festsetzen ?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "84",
+              " 85",
+              " 86 "
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "84": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 0,3% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 87
+          }
+        ]
+      }
+    },
+    "85": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 2,6% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 87
+          }
+        ]
+      }
+    },
+    "86": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte den Leitzins auf 1,3% setzen.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 87
+          }
+        ]
+      }
+    },
+    "87": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank für deine bedachte Entscheidung.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 87
+          }
+        ]
+      }
+    },
+    "88": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Mindestreserve sollen Banken bilden?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "98",
+              " 90",
+              " 91"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "89": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 1,3% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 92
+          }
+        ]
+      }
+    },
+    "90": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 0,8% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 92
+          }
+        ]
+      }
+    },
+    "91": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Banken sollen ihre Mindestreserve anhand des Mindestreservesatzes von 0,8% bilden.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "92"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "92": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "\nVielen Dank. Kommen wir nun zu den Offenmarktgeschäften.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 93
+          }
+        ]
+      }
+    },
+    "93": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Welche Anleihen möchtest du Kaufen, um den Staat oder das Unternehmen vor der Pleite zu bewahren?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": [
+              "94",
+              " 95",
+              " 96"
+            ],
+            "chat": "Mario1"
+          }
+        ]
+      }
+    },
+    "94": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Staatsanleihen von Großbritannien kaufen und das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 97
+          }
+        ]
+      }
+    },
+    "95": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Unternehmensanleihen der Commerzbank AG kaugen, das Unternehmen somit vor der Insolvenz bewahren und viele Arbeitsplätze sichern.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 97
+          }
+        ]
+      }
+    },
+    "96": {
+      "sender": "PLAYER",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ich möchte Staatsanleihen von Kroatien kaufen und das Land damit vor der Staatspleite bewahren.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 97
+          }
+        ]
+      }
+    },
+    "97": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Ok, dann lass uns mal schauen, wie sich Europa durch deine Geldmarktpolitik entwickelt hat. Wechsle den Chat, um deine Ergebnisse zu sehen. \nLorenz Becker wir dich über die möglichen Szenarien Informieren. ",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 98
+          }
+        ]
+      }
+    },
+    "98": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Vielen Dank für Dein Teilnahme. Es war mir eine Ehre dich durch das Spiel zu begleiten.",
+      "events": {
+        "onSend": []
+      }
+    },
+    "99": {
+      "sender": "Moritz_Hein4",
+      "chat": "Moritz_Hein4",
+      "type": "text",
+      "content": "Hey, ich bin Moritz Hein aus dem Finanz AG Team, ich habe diese Simulation programmiert. ",
+      "events": {
+        "onSend": []
+      }
+    },
+    "100": {
+      "sender": "Aaron_Sigurdson2",
+      "chat": "Aaron_Sigurdson2",
+      "type": "text",
+      "content": "Hey, ich bin Aaron Sigurdson. Ich habe zusammen mit Lukas Schwind die Skripte für die Podcasts geschrieben. Ich hoffe sehr, dass es dir gefällt. 😋",
+      "events": {
+        "onSend": []
+      }
+    },
+    "101": {
+      "sender": "Lukas_Schwind_5",
+      "chat": "Lukas_Schwind_5",
+      "type": "text",
+      "content": "Hey, ich bin Lukas Schwind. Ich habe zusammen mit Aaron Sigurdson die Skripte für die Podcasts geschrieben. Ich hoffe sehr, dass es dir gefällt.  😎",
+      "events": {
+        "onSend": []
+      }
+    },
+    "102": {
+      "sender": "Marius_Steinhauer3",
+      "chat": "Marius_Steinhauer3",
+      "type": "text",
+      "content": "Hey, ich bin Marius Steinhauer. Ich habe an der Entwicklung der Story gearbeitet. Ich hoffe sehr, dass es dir gefällt. ✌🏽",
+      "events": {
+        "onSend": []
+      }
+    },
+    "103": {
+      "sender": "Mario1",
+      "chat": "Mario1",
+      "type": "text",
+      "content": "Sehr gut, dann wechsle den Chat zu Raphael Leukel aus dem EZB-Rat.",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": 9
+          }
+        ]
+      }
+    }
+  },
+  "initialActions": [
+    {
+      "actionType": "sendMessage",
+      "messageId": "0"
+    }
+  ],
+  "loadActions": []
+}

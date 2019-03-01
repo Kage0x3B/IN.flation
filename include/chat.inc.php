@@ -10,9 +10,9 @@
             <span id="contact-name"></span>
             <span class="status">online</span>
         </div>
-        <div class="actions more">
+        <!--<div class="actions more">
             <i class="zmdi zmdi-more-vert"></i>
-        </div>
+        </div>-->
     </div>
     <div class="conversation">
         <div id="conversation-container"></div>
@@ -23,19 +23,14 @@
                         <i class="zmdi zmdi-chevron-left"></i>
                     </div>
                 </button>
-                <div id="select-index-dots">
-                    <!--<span class="dot"></span>
-                    <span class="dot active"></span>-->
-                    <span class="dot"></span>
-                    <span class="dot active"></span>
-                </div>
+                <div id="select-index-dots"></div>
                 <button id="next-message-choice">
                     <div class="circle">
                         <i class="zmdi zmdi-chevron-right"></i>
                     </div>
                 </button>
             </div>
-            <input id="message-text-box" type="text" class="input-msg" placeholder="..." readonly="readonly" />
+            <div id="message-text-box" class="input-msg">...</div>
             <div class="message-box-hook"></div>
             <button id="send-button" class="send">
                 <div class="circle">

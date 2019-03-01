@@ -1,0 +1,74 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #576ca8;
+  color: #1e2019;
+}
+
+#playButton {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 45%;
+}
+
+.footer {
+  background-color: #41517e;
+  color: #1e2019;
+
+  a {
+    color: #1e2019;
+  }
+}
+
+@media (min-width: 576px) {
+  #playButton {
+    top: 25%;
+    left: 10%;
+    width: 50%;
+  }
+}
+
+@media (min-width: 576px) {
+  #playButton {
+    top: 25%;
+    left: 10%;
+    width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  #playButton {
+    top: 20%;
+    left: 20%;
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  #playButton {
+    top: 35%;
+    left: 20%;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #playButton {
+    left: 20%;
+    width: 65%;
+  }
+}

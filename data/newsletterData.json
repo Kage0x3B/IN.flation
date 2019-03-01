@@ -1,0 +1,20 @@
+{
+  "newsletters": [
+	{
+      "condition": "infRate > 3",
+      "message": "✉ Handelsblatt Newsletter<br>📈 Durch die Inflationsrate von ganzen {infRatePercent} könnte man meinen die Wirtschaft droht zu entgleisen!"
+    },
+    {
+      "condition": "infRate > 2",
+      "message": "✉ Handelsblatt Newsletter<br>📈 Die Inflationsrate liegt bei besorgniserregenden {infRatePercent}."
+    },
+    {
+      "condition": "infRate < 0",
+      "message": "✉ Handelsblatt Newsletter<br>📉 {defRatePercent} Inflationsrate, Experten erwarten einen Wirtschaftskollaps durch Deflation!!"
+    },
+    {
+      "condition": "true",
+      "message": "✉ Handelsblatt Newsletter<br>Die Inflationsrate ist zur Zeit bei stabilen {infRatePercent}."
+    }
+  ]
+}

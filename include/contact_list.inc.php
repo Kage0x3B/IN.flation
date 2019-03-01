@@ -1,11 +1,11 @@
 <div id="contact-list-screen">
     <div class="menu-bar">
         <div class="name">
-            <span>Whysapp</span>
+            <span>IN.flation</span>
         </div>
-        <div class="actions more">
+        <!--<div class="actions more">
             <i class="zmdi zmdi-more-vert"></i>
-        </div>
+        </div>-->
     </div>
     <div id="contact-list" class="contact-list">
         <!--<div class="contact">

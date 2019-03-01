@@ -1,7 +1,11 @@
 function Messenger(gameData) {
     this.gameData = gameData;
     this.currentScreen = null;
-    this.gameStateManager = new GameStateManager(this);
+    this.dataManager = new DataManager(this);
+    this.notificationSound = new Audio("sounds/plucky.mp3");
+    this.audioManager = new AudioManager(this);
+    this.virtualEconomy = new VirtualEconomy(this);
+    this.virtualEconomy.economyNewsletter.loadNewsletterData();
 
     const self = this;
 
@@ -18,51 +22,94 @@ function Messenger(gameData) {
         }
     };
 
+    this.sendCustomMessage = function (chat, type, messageContent) {
+        const messageId = this.dataManager.createCustomMessage(chat, type, messageContent);
+        this.sendMessage(messageId);
+    };
+
     this.sendMessage = function (messageId) {
-        const messageData = this.gameStateManager.getMessage(messageId);
-        const isCurrentChat = this.currentScreen instanceof ChatScreen && this.currentScreen.contactId === messageData.chat;
-        this.gameStateManager.markSend(messageId, !isCurrentChat);
+        const messageData = this.dataManager.getMessage(messageId);
 
-        if (isCurrentChat) {
-            this.currentScreen.appendMessage(messageId);
+        const timeout = messageData.direction === "received" ? Math.random() * 1500 + 500 : 0;
+        window.setTimeout(function () {
+            const isCurrentChat = self.currentScreen instanceof ChatScreen && self.currentScreen.contactId === messageData.chat;
+            self.dataManager.markSend(messageId, !isCurrentChat);
 
-            if (messageData.direction === "sent") {
-                this.currentScreen.animateMessage(messageId);
+            if (isCurrentChat) {
+                self.currentScreen.appendMessage(messageId);
+
+                const conversationContainerSelector = $("#conversation-container");
+                conversationContainerSelector.animate({scrollTop: conversationContainerSelector.prop("scrollHeight")}, 500);
+
+                if (messageData.direction === "sent") {
+                    self.currentScreen.animateMessage(messageId);
+                }
+            } else if (messageData.direction === "received") {
+                self.notificationSound.play();
+
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(200);
+                }
             }
-        }
 
-        if ("onSend" in messageData.events) {
-            messageData.events["onSend"].forEach(function (actionData) {
-                self.executeAction(actionData);
-            });
-        }
+            if (self.currentScreen instanceof ContactListScreen) {
+                self.currentScreen.updateContactList();
+            }
+
+            if (messageData.events && "onSend" in messageData.events) {
+                messageData.events["onSend"].forEach(function (actionData) {
+                    self.executeAction(actionData);
+                });
+            }
+        }, timeout);
     };
 
     this.showMessageSelect = function (messageIds, chat) {
         const isCurrentChat = this.currentScreen instanceof ChatScreen && this.currentScreen.contactId === chat;
 
-        this.gameStateManager.setMessageChoices(chat, messageIds);
+        this.dataManager.setMessageChoices(chat, messageIds);
         if (isCurrentChat) {
-            const messageChoices = this.gameStateManager.getMessageChoices(chat);
+            const messageChoices = this.dataManager.getMessageChoices(chat);
             this.currentScreen.showMessageChoices(messageChoices);
         }
     };
 
     this.executeAction = function (actionData) {
-        console.log(actionData);
-        switch (actionData.actionType) {
-            case "sendMessage":
-                this.sendMessage(actionData.messageId);
-                break;
-            case "showMessageSelect":
-                this.showMessageSelect(actionData.messageIds, actionData.chat);
-                break;
-            default:
-                console.log("Invalid action type! Action data:");
-                console.log(actionData);
-                break;
+        const type = actionData.actionType;
+
+        const typeStart = type.substring(0, 3);
+
+        if (type === "sendMessage") {
+            this.sendMessage(actionData.messageId);
+        } else if (type === "sendMessageCondition") {
+            const messages = actionData.messages;
+            let messageId;
+
+            for (let i = 0; i < messages.length; i++) {
+                const message = messages[i];
+
+                const infRate = this.virtualEconomy.inflationRate;
+                if (eval(message.condition)) {
+                    messageId = message.messageId;
+
+                    break;
+                }
+            }
+
+            if (messageId) {
+                this.sendMessage(messageId);
+            }
+        } else if (type === "showMessageSelect") {
+            this.showMessageSelect(actionData.messageIds, actionData.chat);
+        } else if (typeStart === "ve:") {
+            this.virtualEconomy.processAction(actionData);
+        } else {
+            console.log("Invalid action type! Action data:");
+            console.log(actionData);
         }
     };
+
+    this.audioManager.preloadAudio();
 
     this.gameData["initialActions"].forEach(function (actionData) {
         self.executeAction(actionData);
@@ -72,11 +119,13 @@ function Messenger(gameData) {
     });
 }
 
-function GameStateManager(messenger) {
+function DataManager(messenger) {
     this.saveData = {
         contacts: {},
         sendTime: {},
-        messageSelect: {}
+        messageSelect: {},
+        customMessages: {},
+        customMessageCounter: 0
     };
 
     const self = this;
@@ -98,10 +147,36 @@ function GameStateManager(messenger) {
         events: {}
     };
 
-    this.getMessage = function (messageId) {
-        const messageData = messenger.gameData.messages[messageId];
+    this.createCustomMessage = function (sender, type, messageContent) {
+        const messageId = "custom-" + (this.saveData.customMessageCounter++);
 
-        messageData.messageId = messageId;
+        this.saveData.customMessages[messageId] = {
+            sender: sender,
+            chat: sender,
+            type: type,
+            content: messageContent
+        };
+
+        return messageId;
+    };
+
+    this.getMessage = function (messageId) {
+        let messageData;
+        let messageIdString = String(messageId).trim();
+
+        if (messageIdString.startsWith("custom-")) {
+            messageData = this.saveData.customMessages[messageIdString];
+        } else {
+            messageData = messenger.gameData.messages[messageIdString];
+        }
+
+        if (!messageData) {
+            console.log("No message with id " + messageId + "!");
+
+            return JSON.parse(JSON.stringify(this.emptyMessage));
+        }
+
+        messageData.messageId = messageIdString;
 
         if (messageData.sender === "PLAYER") {
             messageData.senderDisplayname = "Du";
@@ -152,7 +227,9 @@ function GameStateManager(messenger) {
 
         const self = this;
         this.saveData.messageSelect[contactId].forEach(function (messageId) {
-            messageChoices.push(self.getMessage(messageId));
+            const message = self.getMessage(messageId);
+
+            messageChoices.push(message);
         });
 
         return messageChoices;
@@ -180,16 +257,132 @@ function GameStateManager(messenger) {
     };
 }
 
+function AudioManager(messenger) {
+    this.loadedAudio = {};
+
+    const self = this;
+
+    this.preloadAudio = function () {
+        /*console.log("Loading audio...");
+        Object.keys(messenger.gameData.messages).forEach(function (key) {
+            const messageData = messenger.gameData.messages[key];
+
+            if (messageData.type === "audio") {
+                const audioUrl = "audio/" + messageData.content;
+
+                const audio = new Audio(audioUrl);
+                audio.preload = "auto";
+                self.loadedAudio[messageData.content] = audio;
+
+                console.log("Loading " + audioUrl + " (message: " + key + ")");
+            }
+        });*/
+    };
+}
+
+function VirtualEconomy(messenger) {
+    this.inflationRate = 0;
+    this.economyNewsletter = new EconomyNewsletter(messenger, this);
+
+    this.processAction = function (actionData) {
+        const actionType = actionData.actionType;
+
+        switch (actionType) {
+            case "ve:eval":
+                let infRate = this.inflationRate;
+                eval(actionData.script);
+                this.inflationRate = infRate;
+                console.log("Inflationsrate: " + this.inflationRate);
+                break;
+            case "ve:triggerNewsletter":
+                const newsletterChat = actionData.chat;
+                this.economyNewsletter.sendNewsletter(newsletterChat);
+                break;
+        }
+    };
+}
+
+function EconomyNewsletter(messenger, virtualEconomy) {
+    this.newsletterData = {
+        newsletters: [
+            {
+                condition: "true",
+                message: "Die Inflationsrate ist bei {infRatePercent}."
+            }
+        ]
+    };
+
+    const self = this;
+
+    this.loadNewsletterData = function () {
+        $.ajax({
+            dataType: "json",
+            cache: false,
+            url: "data/newsletterData.json"
+        }).done(function (newsletterData) {
+            self.newsletterData = newsletterData;
+        }).fail(function () {
+            console.log("Unable to load newsletter data!");
+        });
+    };
+
+    this.sendNewsletter = function (chat) {
+        const infRate = virtualEconomy.inflationRate;
+        const infRatePercent = this.formatFloat(infRate) + "%";
+        const defRatePercent = this.formatFloat(-infRate) + "%";
+
+        const possibleNewsletters = [];
+
+        if (this.newsletterData) {
+            const newsletters = this.newsletterData.newsletters;
+
+            for (let i = 0; i < newsletters.length; i++) {
+                const newsletter = newsletters[i];
+
+                if (eval(newsletter.condition)) {
+                    possibleNewsletters.push(newsletter.message);
+                }
+            }
+        }
+
+        let newsletterContent = "Die Inflationsrate ist bei " + infRatePercent + ".";
+
+        if (possibleNewsletters.length > 0) {
+            newsletterContent = possibleNewsletters[Math.floor(Math.random() * possibleNewsletters.length)];
+
+            if (newsletterContent.startsWith("eval:")) {
+                newsletterContent = newsletterContent.substring(5);
+                newsletterContent = eval(newsletterContent);
+            }
+
+            newsletterContent = newsletterContent.replace("{infRate}", infRate);
+            newsletterContent = newsletterContent.replace("{defRate}", String(-infRate));
+            newsletterContent = newsletterContent.replace("{infRatePercent}", infRatePercent);
+            newsletterContent = newsletterContent.replace("{defRatePercent}", defRatePercent);
+        }
+
+        messenger.sendCustomMessage(chat, "text", newsletterContent);
+    };
+
+    this.formatFloat = function (num) {
+        return Number.parseFloat(num.toFixed(1)).toPrecision(1);
+    };
+}
+
 function ContactListScreen(messenger) {
     this.messenger = messenger;
     this.domElement = $("#contact-list-screen");
 
     this.prepareScreen = function () {
-        const contactData = this.messenger.gameData["contacts"];
+        this.updateContactList();
+    };
 
+    this.updateContactList = function () {
+        const contactData = this.messenger.gameData["contacts"];
         let contactListHtml = "";
 
         const self = this;
+
         Object.keys(contactData).forEach(function (key) {
             contactListHtml += self.buildContactHtml(key, contactData[key]);
         });
@@ -207,9 +400,18 @@ function ContactListScreen(messenger) {
     this.buildContactHtml = function (contactId, contactData) {
         let html = "";
 
-        const lastMessage = this.messenger.gameStateManager.getLastMessage(contactId);
+        const lastMessage = this.messenger.dataManager.getLastMessage(contactId);
+
+        if (lastMessage.content.isEmpty()) { //Don't display empty chats
+            return "";
+        }
+
         //const messagePreview = lastMessage.content.isEmpty() ? "" : lastMessage.senderDisplayname + ": " + lastMessage.content;
-        const messagePreview = lastMessage.content;
+        let messagePreview = lastMessage.content;
+
+        if (lastMessage.type === "audio") {
+            messagePreview = "<i class='zmdi zmdi-volume-up'></i> Audio";
+        }
 
         html += "<div id='" + contactId + "' class='contact'>";
         html += "<div class='avatar'>";
@@ -235,25 +437,22 @@ function ChatScreen(messenger, contactId) {
     this.selectedMessage = -1;
 
     this.prepareScreen = function () {
-        const self = this;
+        let self = this;
 
-        $("#conversation-container").html("");
+        const conversationContainerSelector = $("#conversation-container");
+        conversationContainerSelector.html("");
 
         const contactData = this.messenger.gameData["contacts"][contactId];
         $("#contact-avatar").attr("src", "images/avatar/" + contactData.picture);
         $("#contact-name").text(contactData.name);
 
-        const messageHistory = this.messenger.gameStateManager.getMessageHistory(this.contactId);
+        const messageHistory = this.messenger.dataManager.getMessageHistory(this.contactId);
 
         messageHistory.forEach(function (messageId) {
             self.appendMessage(messageId);
         });
 
-        $("#back-arrow").on("click", function () {
-            self.messenger.changeScreen(new ContactListScreen(self.messenger));
-        });
-
-        const messageChoices = this.messenger.gameStateManager.getMessageChoices(this.contactId);
+        const messageChoices = this.messenger.dataManager.getMessageChoices(this.contactId);
 
         if (messageChoices !== undefined) {
             this.showMessageChoices(messageChoices);
@@ -261,7 +460,15 @@ function ChatScreen(messenger, contactId) {
             this.hideMessageChoices();
         }
 
-        $("#prev-message-choice").on("click", function () {
+        const backArrowSelector = $("#back-arrow");
+        backArrowSelector.off("click");
+        backArrowSelector.on("click", function () {
+            self.messenger.changeScreen(new ContactListScreen(self.messenger));
+        });
+
+        const prevMessageChoiceSelector = $("#prev-message-choice");
+        prevMessageChoiceSelector.off("click");
+        prevMessageChoiceSelector.on("click", function () {
             self.selectedMessage -= 1;
 
             if (self.selectedMessage < 0) {
@@ -271,7 +478,9 @@ function ChatScreen(messenger, contactId) {
             self.updateMessageChoices();
         });
 
-        $("#next-message-choice").on("click", function () {
+        const nextMessageChoiceSelector = $("#next-message-choice");
+        nextMessageChoiceSelector.off("click");
+        nextMessageChoiceSelector.on("click", function () {
             self.selectedMessage += 1;
 
             if (self.selectedMessage >= self.messageChoices.length) {
@@ -281,7 +490,10 @@ function ChatScreen(messenger, contactId) {
             self.updateMessageChoices();
         });
 
-        $("#send-button").on("click", function () {
+
+        const sendButtonSelector = $("#send-button");
+        sendButtonSelector.off("click");
+        sendButtonSelector.on("click", function () {
             if (self.selectedMessage === -1) {
                 return;
             }
@@ -289,14 +501,17 @@ function ChatScreen(messenger, contactId) {
             const message = self.messageChoices[self.selectedMessage];
 
             self.hideMessageChoices();
-            self.messenger.gameStateManager.unsetMessageChoices(self.contactId);
+            self.messenger.dataManager.unsetMessageChoices(self.contactId);
 
             self.messenger.sendMessage(message.messageId);
         });
+
+        //conversationContainerSelector.scrollTop(conversationContainerSelector.prop("scrollHeight"));
+        conversationContainerSelector.animate({scrollTop: conversationContainerSelector.prop("scrollHeight")}, 10);
     };
 
     this.appendMessage = function (messageId) {
-        const message = this.messenger.gameStateManager.getMessage(messageId);
+        const message = this.messenger.dataManager.getMessage(messageId);
         const containerId = "message-" + messageId;
 
         this.appendMessageHtml(containerId, message);
@@ -310,6 +525,7 @@ function ChatScreen(messenger, contactId) {
 
     this.appendMessageHtml = function (containerId, message) {
         let messageHtml = "";
+        let audioMessage;
 
         switch (message.type) {
             case "text":
@@ -327,6 +543,17 @@ function ChatScreen(messenger, contactId) {
                 messageHtml += "</span>";
                 messageHtml += "</div>";
                 break;
+            case "audio":
+                audioMessage = new AudioMessage(messenger, message);
+
+                messageHtml += "<div id='" + containerId + "' class='message received'>";
+                messageHtml += audioMessage.buildHtml();
+                messageHtml += "<span class='metadata'>";
+                messageHtml += "<span class='time'>" + message.time + "</span>";
+
+                messageHtml += "</span>";
+                messageHtml += "</div>";
+                break;
             default:
                 console.log("Invalid message type! Message:");
                 console.log(message);
@@ -335,6 +562,10 @@ function ChatScreen(messenger, contactId) {
         const conversationContainerElement = $("#conversation-container");
         let currentHtml = conversationContainerElement.html();
         conversationContainerElement.html(currentHtml + messageHtml);
+
+        if (audioMessage) {
+            audioMessage.initEvents();
+        }
     };
 
     this.animateMessage = function (messageId) {
@@ -357,7 +588,13 @@ function ChatScreen(messenger, contactId) {
         }
         $("#select-index-dots").html(indexDotsHtml);
 
-        $("#message-select").show();
+        const messageSelectSelector = $("#message-select");
+        if(messageChoices.length > 1) {
+            messageSelectSelector.show();
+        } else {
+            messageSelectSelector.hide();
+        }
+
         this.updateMessageChoices();
     };
 
@@ -366,19 +603,77 @@ function ChatScreen(messenger, contactId) {
         this.selectedMessage = -1;
 
         $("#message-select").hide();
-        $("#message-text-box").val("");
+        $("#message-text-box").html("...");
     };
 
     this.updateMessageChoices = function () {
         let activeMessage = this.messageChoices[this.selectedMessage];
 
-        $("#message-text-box").val(activeMessage.content);
+        $("#message-text-box").html(activeMessage.content);
 
         for (let i = 0; i < this.messageChoices.length; i++) {
             $("#index-dot-" + i).removeClass("active");
         }
 
         $("#index-dot-" + this.selectedMessage).addClass("active");
+    };
+}
+
+//TODO: Hacky, fix later! jQuery on("click", ..) didn't work?!
+function toggleAudio(audioId) {
+    const audio = document.getElementById(audioId + "-ae");
+
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+
+    const iconSelector = $("#" + audioId + "-icon");
+    console.log(iconSelector);
+    iconSelector.removeClass("zmdi-play-circle-outline");
+    iconSelector.removeClass("zmdi-pause-circle-outline");
+    iconSelector.addClass(audio.paused ? "zmdi-play-circle-outline" : "zmdi-pause-circle-outline");
+}
+
+function AudioMessage(messenger, messageData) {
+    this.audioId = "audio-" + messageData.messageId;
+    this.audioUrl = messageData.content;
+
+    const self = this;
+
+    this.buildHtml = function () {
+        let audioHtml = "";
+
+        audioHtml += "<audio id='" + this.audioId + "-ae' preload='auto'>";
+        audioHtml += "<source src='audio/" + messageData.content + "' type='audio/mpeg'>";
+        audioHtml += "<strong>Der Browser unterstützt keine Audio Wiedergabe.</strong>";
+        audioHtml += "</audio>";
+        audioHtml += "<div id='" + this.audioId + "-play' onclick='toggleAudio(\"" + this.audioId + "\")' class='play-button'>";
+        audioHtml += "<i id='" + this.audioId + "-icon' class='zmdi zmdi-play-circle-outline zmdi-hc-3x'></i>";
+        audioHtml += "</div>";
+
+        return audioHtml;
+    };
+
+    this.initEvents = function () {
+        /*const buttonSelector = $("#" + this.audioId + "-play");
+        buttonSelector.on("click", function () {
+            const audioElementSelector = $("#" + self.audioId + "-ae");
+            const audio = audioElementSelector.get();
+            console.log(audio);
+            console.log(audio.paused);
+
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+
+            const iconSelector = buttonSelector.find("i");
+            iconSelector.removeClass(self.audio.paused ? "zmdi-pause-circle-outline" : "zmdi-play-circle-outline");
+            iconSelector.addClass(self.audio.paused ? "zmdi-play-circle-outline" : "zmdi-pause-circle-outline");
+        });*/
     };
 }
 
@@ -395,17 +690,30 @@ function updateDeviceTime() {
     }, 1000);
 }
 
+let messenger = undefined; //TODO: For debugging purposes
+
 $(function () {
     updateDeviceTime();
     hideScreenTemplates();
 
-    $.getJSON("data/game_data.json", function (gameData) {
-        const messenger = new Messenger(gameData);
+    const dataFile = "data/" + dataName + ".json";
+
+    $.ajax({
+        dataType: "json",
+        cache: false,
+        url: dataFile
+    }).done(function (gameData) {
+        messenger = new Messenger(gameData);
 
         const chatListScreen = new ContactListScreen(messenger);
-        //messenger.changeScreen(chatListScreen);
-        messenger.changeScreen(new ChatScreen(messenger, "Moritz"));
+        messenger.changeScreen(chatListScreen);
+    }).fail(function () {
+        alert("Unable to load game data!");
     });
+
+    if (window.navigator.vibrate) {
+        window.navigator.vibrate(0);
+    }
 });
 
 String.prototype.isEmpty = function () {

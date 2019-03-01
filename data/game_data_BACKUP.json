@@ -1,0 +1,119 @@
+{
+  "contacts": {
+    "Moritz": {
+      "name": "Moritz Hein",
+      "picture": "Moritz.jpg"
+    }
+  },
+  "messages": {
+    "0": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Hi!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": "1"
+          }
+        ]
+      }
+    },
+    "1": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Wie geht's so?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": ["2", "3"],
+            "chat": "Moritz"
+          }
+        ]
+      }
+    },
+    "2": {
+      "sender": "PLAYER",
+      "chat": "Moritz",
+      "type": "text",
+      "content": "Gut, dir?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": "4"
+          }
+        ]
+      }
+    },
+    "3": {
+      "sender": "PLAYER",
+      "chat": "Moritz",
+      "type": "text",
+      "content": "Geht so...",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": "5"
+          }
+        ]
+      }
+    },
+    "4": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Cool, mir auch..",
+      "events": {}
+    },
+    "5": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Huch, ok..?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": ["6", "7"],
+            "chat": "Moritz"
+          }
+        ]
+      }
+    },
+    "6": {
+      "sender": "PLAYER",
+      "chat": "Moritz",
+      "type": "text",
+      "content": "Sorry, hatte einen komischen Tag.",
+      "events": {}
+    },
+    "7": {
+      "sender": "PLAYER",
+      "chat": "Moritz",
+      "type": "text",
+      "content": "Geht dich nichts an!!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": "8"
+          }
+        ]
+      }
+    },
+    "8": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Ok, alles gut, ich lass dich ja schon in Ruhe...",
+      "events": {}
+    }
+  },
+  "initialActions": [
+    {
+      "actionType": "sendMessage",
+      "messageId": "0"
+    }
+  ],
+  "loadActions": []
+}

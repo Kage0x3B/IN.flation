@@ -1,0 +1,65 @@
+{
+  "contacts": {
+    "Moritz": {
+      "name": "Moritz Hein",
+      "picture": "Moritz.jpg"
+    }, "Handelsblatt1": {
+      "name": "Handelsblatt",
+      "picture": "Handelsblatt.png"
+    }
+  },
+  "messages": {
+    "0": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Hi!",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "sendMessage",
+            "messageId": "1"
+          }
+        ]
+      }
+    },
+    "1": {
+      "sender": "Moritz",
+      "type": "text",
+      "content": "Wie geht's so?",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "showMessageSelect",
+            "messageIds": ["2"],
+            "chat": "Moritz"
+          }
+        ]
+      }
+    },
+    "2": {
+      "sender": "PLAYER",
+      "chat": "Moritz",
+      "type": "text",
+      "content": "Nicht mehr so gut bei einer Deflation",
+      "events": {
+        "onSend": [
+          {
+            "actionType": "ve:eval",
+            "script": "infRate -= 3"
+          },
+          {
+            "actionType": "ve:triggerNewsletter",
+            "chat": "Handelsblatt1"
+          }
+        ]
+      }
+    }
+  },
+  "initialActions": [
+    {
+      "actionType": "sendMessage",
+      "messageId": "0"
+    }
+  ],
+  "loadActions": []
+}
