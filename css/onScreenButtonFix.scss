@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  #chat-screen {
+    height: calc(92vh - 42px);
+  }
+
+  #chat-screen #conversation-container {
+    height: calc(92vh - 120px);
+  }
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{de, jquery-3.3.1.slim, moment}" />
+    <file url="PROJECT" libraries="{ace, bootbox, bootstrap-confirmation, bootstrap.bundle, de, jquery-3.3.1, jquery-3.3.1.slim, moment}" />
   </component>
 </project>

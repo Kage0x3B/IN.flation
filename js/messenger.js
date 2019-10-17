@@ -515,12 +515,6 @@ function ChatScreen(messenger, contactId) {
         const containerId = "message-" + messageId;
 
         this.appendMessageHtml(containerId, message);
-
-        switch (message.type) {
-            case "text": //Nothing special needs to happen for normal text messages. Use this later for audio messages etc.
-                break;
-            //Default error already handled in appendMessageHtml
-        }
     };
 
     this.appendMessageHtml = function (containerId, message) {
@@ -589,7 +583,7 @@ function ChatScreen(messenger, contactId) {
         $("#select-index-dots").html(indexDotsHtml);
 
         const messageSelectSelector = $("#message-select");
-        if(messageChoices.length > 1) {
+        if (messageChoices.length > 1) {
             messageSelectSelector.show();
         } else {
             messageSelectSelector.hide();
@@ -638,7 +632,7 @@ function toggleAudio(audioId) {
 
 function AudioMessage(messenger, messageData) {
     this.audioId = "audio-" + messageData.messageId;
-    this.audioUrl = messageData.content;
+    this.audioUrl = "audio/" + messageData.content;
 
     const self = this;
 
@@ -646,12 +640,18 @@ function AudioMessage(messenger, messageData) {
         let audioHtml = "";
 
         audioHtml += "<audio id='" + this.audioId + "-ae' preload='auto'>";
-        audioHtml += "<source src='audio/" + messageData.content + "' type='audio/mpeg'>";
+        audioHtml += "<source src='" + this.audioUrl + "' type='audio/mpeg'>";
         audioHtml += "<strong>Der Browser unterstützt keine Audio Wiedergabe.</strong>";
         audioHtml += "</audio>";
         audioHtml += "<div id='" + this.audioId + "-play' onclick='toggleAudio(\"" + this.audioId + "\")' class='play-button'>";
         audioHtml += "<i id='" + this.audioId + "-icon' class='zmdi zmdi-play-circle-outline zmdi-hc-3x'></i>";
         audioHtml += "</div>";
+
+        if (externalPodcast) {
+            audioHtml += "<a href='" + this.audioUrl + "' target='_blank' class='external-podcast'>";
+            audioHtml += "<i class='zmdi zmdi-open-in-new zmdi-hc-2x'></i>";
+            audioHtml += "</a>";
+        }
 
         return audioHtml;
     };

@@ -1,3 +1,5 @@
 *.css
 .htaccess
-.idea/*
+.idea
+*.mp3
+images/avatar

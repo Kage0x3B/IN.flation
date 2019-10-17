@@ -1,8 +1,18 @@
 <?php
 $dataName = "game_data";
+$externalPodcast = false;
+$onScreenButtonFix = false;
 
 if (isset($_GET["data"])) {
     $dataName = $_GET["data"];
+}
+
+if (isset($_GET["externalPodcast"]) && $_GET["externalPodcast"] === "on") {
+    $externalPodcast = true;
+}
+
+if (isset($_GET["onScreenButtonFix"]) && $_GET["onScreenButtonFix"] === "on") {
+    $onScreenButtonFix = true;
 }
 ?>
 <!doctype html>
@@ -18,6 +28,11 @@ if (isset($_GET["data"])) {
         <link href="https://rawgit.com/marvelapp/devices.css/master/assets/devices.min.css" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="css/messenger.css">
+        <?php
+            if($onScreenButtonFix) {
+                echo "<link rel='stylesheet' type='text/css' href='css/onScreenButtonFix.css'>";
+            }
+        ?>
     </head>
     <body>
         <div class="page">
@@ -58,6 +73,7 @@ if (isset($_GET["data"])) {
 
         <script type="text/javascript">
             const dataName = "<?php echo $dataName; ?>";
+            const externalPodcast = "<?php echo $externalPodcast; ?>";
         </script>
         <script type="text/javascript" src="js/messenger.js"></script>
     </body>
